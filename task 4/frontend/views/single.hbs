@@ -1,0 +1,24 @@
+{{>header}}
+{{>navbar}}
+  {{#if isFound}}
+  <section class="row">
+    <table class="table table-stripped">
+      <thead>
+        <tr>
+          <th>ID: {{userData.id}}</th>
+          <th>name: {{userData.name}}</th>
+        </tr>
+        <tr>
+          <th>Email: {{userData.email}}</th>
+          <th>Age: {{userData.age}}</th>
+        </tr>
+      </thead>
+    </table>
+  </section>
+  {{else}}
+  <div class="alert alert-danger">
+    User Not Found
+  </div>
+  {{/if}}
+</div>
+{{>footer}}

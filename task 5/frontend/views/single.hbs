@@ -1,0 +1,25 @@
+{{>header}}
+{{>navbar}}
+  {{#if isFound}}
+  <section class="row">
+    <table class="table table-stripped">
+      <thead>
+        <tr>
+                    <th>Id: {{userData.id}}</th>
+          <th>Number: {{userData.accountNumber}}</th>
+          <th>Name: {{userData.name}}</th>
+        </tr>
+        <tr>
+          <th>InitialBalance: {{userData.initBalance}}</th>
+          <th>ReminedBalance: {{userData.reminedBalance}}</th>
+        </tr>
+      </thead>
+    </table>
+  </section>
+  {{else}}
+  <div class="alert alert-danger">
+    User Not Found
+  </div>
+  {{/if}}
+</div>
+{{>footer}}

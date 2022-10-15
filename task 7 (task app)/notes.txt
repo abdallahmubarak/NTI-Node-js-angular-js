@@ -1,0 +1,12 @@
+user=> name, age, email, status, addresses:[
+    { addrTye : 'home', addrDetails : "bhdvhvs" }
+]
+
+add user
+edit
+del
+delAll
+show all
+show single
+add address
+delete address

@@ -1,0 +1,27 @@
+{{>header}}
+{{>navbar}}
+  <section class="row">
+   <form action="/addCustomar" method="post">
+
+     <div class="mb-3">
+        <input name="id" placeholder="id" class="form-control" value="{{userData.id}}" disabled>
+    </div>
+     <div class="mb-3">
+        <input name="accountNumber" placeholder="Account Number" class="form-control" value="{{userData.accountNumber}}" >
+    </div>
+     <div class="mb-3">
+        <input name="name" placeholder="Name" class="form-control" type="text" value="{{userData.name}}" >
+    </div>
+     <div class="mb-3">
+        <input name="initBalance" type="number" placeholder="initial value" value="{{userData.initBalance}}" class="form-control">
+    </div>
+     <div class="mb-3">
+        <input name="reminedBalance" type="number" placeholder="Remined Balance" value="{{userData.reminedBalance}}" class="form-control">
+    </div>
+     <div class="mb-3">
+            <button type="submit">submit</button>
+    </div>
+   </form>
+  </section>
+</div>
+{{>footer}}
