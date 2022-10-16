@@ -47,11 +47,11 @@ class User{
         connect(async(err,db)=>{
             if(err) res.render('err404',{pageTitle:'database error 1'})
              try {
-                const data =await db.collection('tasks').findOne({_id:new ObjectId(req.params.id)})
+                await db.collection('tasks').findOne({_id:new ObjectId(req.params.id)})
                 .then(result=>{
                     res.render('editStatus',{
                         pageTitle:'Edit User',
-                        user:result
+                        data:result
                     })
                 })
              } catch (error) {
@@ -63,14 +63,16 @@ class User{
         connect(async(err, db)=>{
             if(err) res.render("err404", {pageTitle:"database error 1"})
              try{
-               const data =await db.collection('tasks').updateOne(
+               await db.collection('tasks').updateOne(
                 {_id:new ObjectId(req.params.id)},
                 {$set:req.body.status}
                 
+            ).then(result=>{
+                res.redirect("/")
+            }
             )
-                   res.redirect("/")
-             }
-             catch(e){
+                }
+                   catch(e){
                res.render("err404", {pageTitle:"database error 2"})
              }
                 
@@ -82,7 +84,7 @@ class User{
         connect(async(err, db)=>{
             if(err) res.render("err404", {pageTitle:"database error 1"})
              try{
-                const data = await db.collection("tasks").deleteOne({_id: new ObjectId(req.params.id)})
+                await db.collection("tasks").deleteOne({_id: new ObjectId(req.params.id)})
                 res.redirect("/")
              }
              catch(e){
