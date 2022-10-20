@@ -15,7 +15,7 @@ const adminRoutes = require("../routes/admin.routes")
 const userRoutes = require("../routes/user.routes")
 const productRoutes = require("../routes/product.routes")
 
-app.use("/admin", adminRoutes)
-app.use("/user", userRoutes)
-app.use("/product", productRoutes)
+app.use("/api/admin", adminRoutes)
+app.use("/api/user", userRoutes)
+app.use("/api/product", productRoutes)
 module.exports = app

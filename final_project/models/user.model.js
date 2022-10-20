@@ -11,14 +11,14 @@ const userSchema = mongoose.Schema({
     }, 
     password:{type:String, required:true, trim:true}, 
     profileImage:{type:String, trim:true, default:"app.webp"}, 
-    userType:{type:String, required:true, trim:true, enum:["admin", "user"]},
+    userType:{type:String, required:false, trim:true, enum:["admin", "user"]},
     tokens:[{
         token:{type:String}
     }]
 
 },
 {timestamps:true})
-userSchema.virtual("adminPosts", {
+userSchema.virtual("adminProduct", {
     ref:"Product",
     localField:"_id",
     foreignField:"adminId"
@@ -29,7 +29,9 @@ userSchema.methods.toJSON = function(){
     return userData
 }
 userSchema.pre("save", async function(){
-    if(this.isModified("password")) this.password=bcrypt.hash(this.password, 12)
+    const userData = this
+    if(userData.isModified("password"))
+        userData.password = await bcrypt.hash(userData.password, 10)
 })
 userSchema.statics.login = async(email, password)=>{
     const userData = await User.findOne({email})

@@ -1,25 +1,28 @@
 const {resBuilder} = require("../helper/app.helper")
 const userModel = require("../models/user.model")
+const adminModel = require("../models/user.model")
+
 // const fs=require("fs")
 // const path= require("path")
 class User{
        //Register Endpoint (Post) finshed
-    static register = async(req,res)=>{
+       static register = async(req,res)=>{
         try{
             const userData =new userModel(req.body)
+            userData.userType="user"
             await userData.save()
-            resBuilder(res,true, userData, "User Register")
+            resBuilder(res,true, userData, " admin added")
         }
         catch(e){
             resBuilder(res,false, e, e.message)
         }
     }
        //Log in Endpoint (Post) finshed
-    static login = async(req,res)=>{
+       static login = async(req,res)=>{
         try{
             const userData = await userModel.login(req.body.email, req.body.password)
             const token = await userData.generateToken()
-            resBuilder(res,true, {userData, token}, `User Logged In ${userData.userType}`)
+            resBuilder(res,true, {userData, token}, "log in")
         }
         catch(e){
             resBuilder(res,false, e, e.message)

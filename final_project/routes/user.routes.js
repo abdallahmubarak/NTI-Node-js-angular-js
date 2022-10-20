@@ -1,9 +1,14 @@
 const router = require("express").Router()
 const User = require("../controllers/user.controller")
-//const {auth, authAdmin, authUser} = require("../middleware/auth.middleware")
+const {auth, authAdmin, authUser} = require("../middleware/auth.middleware")
+
 router.post('/register', User.register)
-router.post("/login", User.login)
-router.get('/logout',User.logOut)
+
+router.post("/login",User.login)
+
+router.get('/logout',auth,User.logOut)
+
+
 //router.get("/me", auth,authUser,User.me)
 
 // const multer  = require('multer')
