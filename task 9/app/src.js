@@ -1,0 +1,13 @@
+const express = require("express")
+const path = require("path")
+require("dotenv").config()
+require("./database/connection")
+const app = express()
+app.use(express.static(path.join(__dirname, "../public")))
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+const userRoutes = require("./routes/user.routes")
+const postRoutes = require("./routes/post.routes")
+app.use("/user",userRoutes)
+app.use("/",postRoutes)
+module.exports=app
